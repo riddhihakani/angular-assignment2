@@ -15,14 +15,28 @@
   <body>
    <div class="container mt-2">
      <div class="row mt-5 justify-content-center">
-       <div class="col-sm-6" id="list1" ng-controller='toBuyController'>
+       <div class="col-sm-6" id="list1" ng-controller='toBuyController as list1'>
           <h1>TO BUY</h1>
-          <div class="items" ng-repeat='item in toBuyList'>
-            <li>Buy {{item.quantity}} {{item.name}}</li><button class="btn btn-outline-light">Bought</button>
+          <div class="row" ng-repeat='item in list1.toBuyList'>
+            <div class="col-sm-6 m-3">
+              
+                <h5>Buy {{item.quantity}} {{item.name}}</h5>
+            
+            </div>
+            <div class="col-sm-2" >
+              <button class="btn btn-outline-light" ng-click="list1.buyItem($index)">Buy</button>
+            </div>
+  
           </div>
+          <h2 ng-if='list1.toBuyList.length == 0'>You bought all the Items! Hurray</h2>
        </div>
-       <div class="col-sm-6" id="list2" ng-controller='alreadyBoughtController'>
+       <div class="col-sm-6" id="list2" ng-controller='alreadyBoughtController as list2'>
           <h1>ALREADY BOUGHT</h1>
+          <div class="row" ng-repeat='item in list2.boughtItems'>
+            <h5>Bought {{item.quantity}} {{item.name}}</h5>
+          
+          </div>
+          <h2 ng-if='list2.boughtItems.length == 0'>Oops! Nothing bought yet</h2>
        </div>
      </div>
    </div>
